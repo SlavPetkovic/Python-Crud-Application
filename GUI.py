@@ -15,29 +15,27 @@ with open("parameters/config.json") as config:
 
 # Establishing engine
 engine = sqlalchemy.create_engine('mysql+mysqlconnector://{0}:{1}@{2}/{3}'.
-                                          format(param['EpiProd'][0]['user'],
-                                                 param['EpiProd'][0]['password'],
-                                                 param['EpiProd'][0]['host'],
-                                                 param['EpiProd'][0]['database']), echo=False)
+                                          format(param['Teletron'][0]['user'],
+                                                 param['Teletron'][0]['password'],
+                                                 param['Teletron'][0]['host'],
+                                                 param['Teletron'][0]['database']), echo=False)
 # Defining entry form
 def entry():
     # getting form data
-    MetricId1 = MetricId.get()
-    DataPoint1 = DataPoint.get()
-    EffectiveBeginDate1 = EffectiveBeginDate.get()
-    EffectiveEndDate1 = EffectiveEndDate.get()
-    CreatedDate1 = (dt.date.today()).strftime('%Y-%m-%d')
-    CreatedBy1 = getpass.getuser()
+    temperature = Temperature.get()
+    pressure = Pressure.get()
+    recorddate = (dt.date.today()).strftime('%Y-%m-%d')
+    CreatedBy = getpass.getuser()
     # applying empty validation
-    if MetricId1 == '' or DataPoint1== '' or EffectiveBeginDate1 == '' or EffectiveEndDate1 =='' or CreatedDate1 == '' or CreatedBy1 == '':  message.set("fill the empty field!!!")
+    if temperature == ''  or pressure =='' or recorddate == '' or CreatedBy == '':  message.set("fill the empty field!!!")
     else:
         # Create connection object to Epi
         Epi_con = engine.connect()
         # Preparing SQL query to INSERT a record into the database.
-        sql = """INSERT INTO SlavsTest (MetricId, DataPoint, EffectiveBeginDate, EffectiveEndDate, CreatedDate,CreatedBy)
-                                    VALUES (%s, %s, %s, %s,%s,%s) """
+        sql = """INSERT INTO crudexample (RecordDate, Temperature, Pressure,CreatedBy)
+                                    VALUES (%s, %s, %s, %s) """
 
-        data = (MetricId1, DataPoint1, EffectiveBeginDate1, EffectiveEndDate1 , CreatedDate1, CreatedBy1)
+        data = (recorddate, temperature, pressure , CreatedBy)
 
         try:
             # executing the sql command
@@ -56,38 +54,30 @@ def Entryform():
     # setting height and width of screen
     entry_screen.geometry("300x270")
     # declaring variable
-    global message;
-    global MetricId
-    global DataPoint
-    global EffectiveBeginDate
-    global EffectiveEndDate
-    global CreatedDate
+    global message
+    global RecordDate
+    global Temperature
+    global Pressure
     global CreatedBy
-    MetricId = IntVar()
-    DataPoint = IntVar()
-    EffectiveBeginDate = StringVar()
-    EffectiveEndDate= StringVar()
-    CreatedDate = StringVar()
+
+    Temperature = IntVar()
+    Pressure = IntVar()
+    RecordDate = StringVar()
     CreatedBy = StringVar()
     message = StringVar()
     # Creating layout of Data Entry Form
-    Label(entry_screen, width="300", text="Please enter details below", bg="green", fg="white").pack()
-    # MetricId Label
-    Label(entry_screen, text = "MetricId * ").place(x=20, y=40)
-    # MetricId textbox
-    Entry(entry_screen, textvariable = MetricId).place(x=140, y=42)
-    # DataPoint Label
-    Label(entry_screen, text= "DataPoint * ").place(x=20, y=80)
-    # DataPoint textbox
-    Entry(entry_screen, textvariable= DataPoint).place(x=140, y=82)
-    # EffectiveBeginDate Label
-    Label(entry_screen, text = "EffectiveBeginDate * ").place(x=20, y=120)
-    # EffectiveBeginDate textbox
-    Entry(entry_screen, textvariable = EffectiveBeginDate).place(x=140, y=122)
-    # EffectiveEndDateLabel
-    Label(entry_screen, text = "EffectiveEndDate * ").place(x=20, y=160)
-    # EffectiveEndDate textbox
-    Entry(entry_screen, textvariable = EffectiveEndDate).place(x=140, y=162)
+    Label(entry_screen, width="300", text="Please enter details below", bg="blue", fg="white").pack()
+
+    # Temperature Label
+    Label(entry_screen, text= "Temperature * ").place(x=20, y=80)
+    # Temperature textbox
+    Entry(entry_screen, textvariable= Temperature).place(x=140, y=82)
+
+    # Pressure Label
+    Label(entry_screen, text = "Pressure * ").place(x=20, y=120)
+    # Pressure textbox
+    Entry(entry_screen, textvariable = Pressure).place(x=140, y=122)
+
     # Label for displaying entry status[success/failed]
     Label(entry_screen, text = "", textvariable=message).place(x=95, y=240)
     # Submit Button

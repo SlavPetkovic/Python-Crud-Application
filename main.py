@@ -6,14 +6,12 @@ import getpass
 # Define final function
 def dataload(name):
     try:
-        MetricId = input("Please Insert MetricId: ")
-        DataPoint = input("Please Insert Data Point: ")
-        EffectiveBeginDate = input("Please Insert Effective begin date: ")
-        EffectiveEndDate = input("Please Insert Effective begin date: ")
-        CreatedDate = (dt.date.today()).strftime('%Y-%m-%d')
+        RecordDate = (dt.date.today()).strftime('%Y-%m-%d')
+        Temperature = input("Please Insert Temperature Data Point: ")
+        Pressure = input("Please Insert Pressure Data Point: ")
         CreatedBy = getpass.getuser()
 
-        dataupdate(MetricId, DataPoint, EffectiveBeginDate, EffectiveEndDate, CreatedDate, CreatedBy)
+        dataupdate(RecordDate, Temperature, Pressure, CreatedBy)
         print("Data has been inserted successfully")
     except:
         print("Data load was not successful")
