@@ -1,6 +1,6 @@
 # Python-Crud-Application
 
-![CrudLogo](data/CRUD-1.png)
+![CrudLogo](data/CRUD.png)
 
 This application is developed to demonstrate CRUD functionality with Python and MySQL database.
 Application can easily be modified to work with MSSQL, Sqlite or any other type of database. 
