@@ -1,14 +1,12 @@
+# Import dependencies
 from tkinter import *
-from  tkinter import  ttk
-#importing connection
-import  mysql.connector
+from tkinter import ttk
+import mysql.connector
 import sqlalchemy
 import json
 import datetime as dt
 import getpass
-import mysql.connector
-import json
-import sqlalchemy
+import mysql
 
 with open("parameters/config.json") as config:
     param = json.load(config)
@@ -45,6 +43,17 @@ def entry():
         except:
             message.set("Data Stored successfully")
 
+
+#def read():
+
+#def update():
+
+#def delete():
+
+#def dbsetup():
+
+
+
 # defining Registration form function
 def Entryform():
     global entry_screen
@@ -52,7 +61,7 @@ def Entryform():
     # Setting title of screen
     entry_screen.title("Data Entry Form")
     # setting height and width of screen
-    entry_screen.geometry("300x270")
+    entry_screen.geometry("400x270")
     # declaring variable
     global message
     global RecordDate
@@ -80,8 +89,11 @@ def Entryform():
 
     # Label for displaying entry status[success/failed]
     Label(entry_screen, text = "", textvariable=message).place(x=95, y=240)
+
     # Submit Button
     Button(entry_screen, text="Submit", width=10, height=1, bg="gray", command=entry).place(x=105, y=210)
+    Button(entry_screen, text="Update", width=10, height=1, bg="gray", command=entry).place(x=205, y=210)
+    Button(entry_screen, text="Delete", width=10, height=1, bg="gray", command=entry).place(x=305, y=210)
     entry_screen.mainloop()
 
 # calling function entry form

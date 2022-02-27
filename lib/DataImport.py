@@ -7,7 +7,7 @@ import sqlalchemy
 with open("parameters/config.json") as config:
     param = json.load(config)
 
-# settting up the function with parameters
+# setting up the function with parameters
 def dataupdate(RecordDate, Temperature, Pressure, CreatedBy):
     # Connecting to data warehouse
     try:

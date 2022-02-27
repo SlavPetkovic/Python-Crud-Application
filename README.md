@@ -29,7 +29,7 @@ C -  Create Record
 Once launched, application will prompt for two data points to be entered in Graphic User Interface. Once Temperature and pressure entered, 
 User will be able to submit entered values which will trigger connection to database and data import. 
 
-R -  Read Recrod
+R -  Read Record
 
 U - Update
 
@@ -59,8 +59,6 @@ Python-Crud-Application
 │   ├── vcs.xml
 │   └── workspace.xml
 ├── data
-│   ├── CRUD-1.png
-│   ├── CRUD.jpeg
 │   ├── CRUD.png
 │   └── Sample.csv
 ├── GUI.py
@@ -88,6 +86,16 @@ Python-Crud-Application
 #### Contribution 
 + Larry Hack
 
+---
+#### Contact:
+For any help you might need, feel free to email me directly at:
+slavoljub.petkovic@outlook.com
+
+#### Portfolio:
+spetkovic.com
+
+
+---
 #### MIT License:
 
 Copyright (c) 2022 Slavoljub Petkovic
